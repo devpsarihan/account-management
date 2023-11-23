@@ -1,0 +1,46 @@
+server:
+  port: '8080'
+management:
+  server:
+    port: '8081'
+spring:
+  application:
+    name: account-management
+  cloud:
+    config:
+      enabled: false
+  jpa:
+    defer-datasource-initialization: 'false'
+    show-sql: false
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    generate-ddl: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
+  datasource:
+    password: ACCOUNT_MANAGEMENT_PASSWORD
+    username: ACCOUNT_MANAGEMENT_USER
+    url: ${DATASOURCE_URL:jdbc:mysql://account-management-mysql:3306/ACCOUNT_MANAGEMENT?useSSL=false&allowPublicKeyRetrieval=true}
+  redis:
+    host: account-management-redis
+    port: 6379
+    connect-timeout: 60
+    database: 0
+    password: eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+  kafka:
+    consumer:
+      group-id: account-management
+      auto-offset-reset: latest
+    bootstrap-servers: account-management-kafka:29092
+    topic:
+      account-management: account-management
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+manager:
+  defaultMaxCreditLimit: 200.00
+
+
+

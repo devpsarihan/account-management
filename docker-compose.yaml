@@ -1,0 +1,73 @@
+version: '3'
+
+services:
+  account-management-mysql:
+    image: mysql:8.0
+    volumes:
+      - account-management-mysql-volume:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=ACCOUNT_MANAGEMENT
+      - MYSQL_USER=ACCOUNT_MANAGEMENT_USER
+      - MYSQL_PASSWORD=ACCOUNT_MANAGEMENT_PASSWORD
+    ports:
+      - 3306:3306
+    networks:
+      - account-management-net
+  account-management-redis:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes:
+      - account-management-redis-volume:/data
+    networks:
+      - account-management-net
+  account-management-zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - 22181:2181
+    networks:
+      - account-management-net
+  account-management-kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - account-management-zookeeper
+    ports:
+      - 29092:29092
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ADVERTISED_HOST_NAME: account-management-kafka
+      KAFKA_ZOOKEEPER_CONNECT: account-management-zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://account-management-kafka:9092,PLAINTEXT_HOST://account-management-kafka:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    volumes:
+      - account-management-kafka-volume:/var/lib/kafka/data
+    networks:
+      - account-management-net
+  account-management:
+    image: account-management-image:latest
+    restart: on-failure
+    ports:
+      - 8080:8080
+    environment:
+      - DATASOURCE_URL=jdbc:mysql://account-management-mysql:3306/ACCOUNT_MANAGEMENT?useSSL=false&allowPublicKeyRetrieval=true
+    depends_on:
+      - account-management-mysql
+      - account-management-redis
+      - account-management-kafka
+    networks:
+      - account-management-net
+volumes:
+  account-management-mysql-volume:
+  account-management-redis-volume:
+  account-management-kafka-volume:
+networks:
+  account-management-net:
+    driver: bridge

@@ -1,0 +1,516 @@
+{
+	"info": {
+		"_postman_id": "1630b083-632c-4f39-be8f-02ab852d42b5",
+		"name": "Account Management API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31351080"
+	},
+	"item": [
+		{
+			"name": "v1",
+			"item": [
+				{
+					"name": "products",
+					"item": [
+						{
+							"name": "create Product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"productName\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"products"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Created",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"productName\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/products",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"products"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "<uuid>"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "managers",
+					"item": [
+						{
+							"name": "register",
+							"item": [
+								{
+									"name": "register Manager",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/managers/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"managers",
+												"register"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Created",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/v1/managers/register",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"managers",
+														"register"
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": \"<uuid>\",\n  \"token\": \"<string>\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "login",
+							"item": [
+								{
+									"name": "login Manager",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/managers/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"managers",
+												"login"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"email\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/v1/managers/login",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"managers",
+														"login"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": \"<uuid>\",\n  \"token\": \"<string>\"\n}"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "bills",
+					"item": [
+						{
+							"name": "get All By Manager Id And Bill Status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/bills?managerId=<uuid>&status=APPROVED",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"bills"
+									],
+									"query": [
+										{
+											"key": "managerId",
+											"value": "<uuid>",
+											"description": "(Required) "
+										},
+										{
+											"key": "status",
+											"value": "APPROVED",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/v1/bills?managerId=<uuid>&status=APPROVED",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"bills"
+											],
+											"query": [
+												{
+													"key": "managerId",
+													"value": "<uuid>",
+													"description": "(Required) "
+												},
+												{
+													"key": "status",
+													"value": "APPROVED",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"createDate\": \"<dateTime>\",\n    \"updateDate\": \"<dateTime>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"amount\": \"<number>\",\n    \"productName\": \"<string>\",\n    \"billNo\": \"<string>\",\n    \"status\": \"REJECTED\"\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"createDate\": \"<dateTime>\",\n    \"updateDate\": \"<dateTime>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"amount\": \"<number>\",\n    \"productName\": \"<string>\",\n    \"billNo\": \"<string>\",\n    \"status\": \"APPROVED\"\n  }\n]"
+								}
+							]
+						},
+						{
+							"name": "create Bill",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"amount\": \"<number>\",\n  \"billNo\": \"<string>\",\n  \"managerId\": \"<uuid>\",\n  \"productId\": \"<uuid>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/bills",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"bills"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Created",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"amount\": \"<number>\",\n  \"billNo\": \"<string>\",\n  \"managerId\": \"<uuid>\",\n  \"productId\": \"<uuid>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/bills",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"bills"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<uuid>\",\n  \"createDate\": \"<dateTime>\",\n  \"updateDate\": \"<dateTime>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"productName\": \"<string>\",\n  \"billNo\": \"<string>\",\n  \"status\": \"APPROVED\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://0.0.0.0:8080"
+		}
+	]
+}
