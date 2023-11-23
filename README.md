@@ -33,11 +33,25 @@ There are 4 endpoints in the project.
 4. **POST /v1/bills** for creating product's bill by manager
 5. **GET /v1/bills** for getting all bills by manager and bill status(approved or rejected) 
 
-**Build**
+**Run with Docker**
+- Compile project with Java 17
+- Run with Docker commands, go to project folder and run this commands
 
     $ cd account-management
     $ docker build -t account-management-image . 
     $ docker-compose -f docker-compose.yaml up -d
+
+**Run with IDE**
+- Firstly you must be run mysql, zookeper, kafka and redis in docker
+- add your host file
+- Run mysql in docker-compose.yaml file and run java project
+
+
+    0.0.0.0 account-management-mysql
+    0.0.0.0 account-management-zookeeper
+    0.0.0.0 account-management-kafka
+    0.0.0.0 account-management-redis
+    0.0.0.0 account-management
 
 **Usage of The Project**
 1. **Register with manager info**
